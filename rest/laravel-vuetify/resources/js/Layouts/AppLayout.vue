@@ -18,7 +18,7 @@ import { Link } from '@inertiajs/vue3';
           class="d-flex"
         >
           <img
-            src="https://github.com/foscia-dev/foscia-examples/raw/main/assets/img/logo.svg"
+            src="https://foscia.dev/img/logo-examples.svg"
             alt="Foscia Examples"
             class="d-flex logo"
           >

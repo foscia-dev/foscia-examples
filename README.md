@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="250" src="./assets/img/logo.svg" alt="Foscia Examples">
+  <img width="250" src="https://foscia.dev/img/logo-examples.svg" alt="Foscia Examples">
 </p>
 
 <p align="center">
