@@ -1,0 +1,7 @@
+$app-heading-font-family: "Onest Variable", sans-serif;
+$app-body-font-family: "Onest Variable", sans-serif;
+
+@use "vuetify/settings" with (
+  $heading-font-family: $app-heading-font-family,
+  $body-font-family: $app-body-font-family,
+);
