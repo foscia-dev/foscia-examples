@@ -1,0 +1,9 @@
+{
+  "usage": "jsonapi",
+  "packageManager": "npm",
+  "language": "ts",
+  "modules": "esm",
+  "path": "resources/js/data",
+  "alias": "@/data",
+  "tabSize": 2
+}

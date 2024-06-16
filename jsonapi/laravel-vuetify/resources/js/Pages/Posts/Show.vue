@@ -3,7 +3,6 @@
   lang="ts"
 >
 import action from '@/data/action';
-import loadUsingRelation from '@/data/loaders/loadMissingUsingRelation';
 import Comment from '@/data/models/comment';
 import Post from '@/data/models/post';
 import AppLayout from '@/Layouts/AppLayout.vue';
@@ -13,6 +12,7 @@ import {
   create,
   destroy,
   fill,
+  include,
   loaded,
   none,
   oneOrCurrent,
@@ -74,10 +74,8 @@ const onDelete = async () => {
 onMounted(async () => {
   try {
     post.value = await action()
-      .use(query(Post, Number(props.postId)))
+      .use(query(Post, props.postId), include('comments'))
       .run(cachedOr(oneOrFail()));
-
-    await loadUsingRelation(post.value, 'comments');
   } catch {
     router.get(route('posts.index'), {}, { replace: true });
   }

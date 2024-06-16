@@ -8,7 +8,7 @@ import Post from '@/data/models/post';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import debounce from '@/utils/debounce';
 import { all, query, when } from '@foscia/core';
-import { param } from '@foscia/http';
+import { filterBy, paginate, sortByDesc, usingDocument } from '@foscia/jsonapi';
 import { Head, useRemember } from '@inertiajs/vue3';
 import { mdiArrowRight, mdiCommentMultipleOutline, mdiMagnify, mdiPlus } from '@mdi/js';
 import { Ref, watch } from 'vue';
@@ -30,17 +30,17 @@ const state = useRemember({
 const fetchPosts = async () => {
   state.value.loading = true;
 
-  const { instances, meta } = await action()
+  const { instances, document } = await action()
     .use(
       query(Post),
-      when(state.value.search.length, param('search', state.value.search)),
-      param('size', 12),
-      param('page', state.value.page),
+      when(state.value.search.length, filterBy('search', state.value.search)),
+      sortByDesc('createdAt'),
+      paginate({ size: 12, number: state.value.page }),
     )
-    .run(all((data) => ({ ...data, meta: data.data.meta })));
+    .run(all(usingDocument));
 
   state.value.posts = instances;
-  state.value.total = meta.page.total;
+  state.value.total = document.meta!.page.total;
 
   state.value.loading = false;
 };
