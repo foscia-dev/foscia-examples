@@ -32,9 +32,9 @@ to get an in-browser ready-to-run example.
 
 ## JSON:API
 
-| Directory                                                | Description                                      |
-|----------------------------------------------------------|--------------------------------------------------|
-| [`rest/laravel-vuetify`](rest/laravel-vuetify/README.md) | Vue+Vuetify frontend using a Laravel REST API.   |
+| Directory                                                      | Description                                        |
+|----------------------------------------------------------------|----------------------------------------------------|
+| [`jsonapi/laravel-vuetify`](jsonapi/laravel-vuetify/README.md) | Vue+Vuetify frontend using a Laravel JSON:API API. |
 
 ## License
 
