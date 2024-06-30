@@ -21,8 +21,8 @@ consume a [Laravel](https://laravel.com/) REST API.
 This application is using [Laravel Sail](https://laravel.com/docs/11.x/sail),
 which requires [Docker](https://www.docker.com/) to be installed on your computer.
 
-In this application, Foscia weight **~76KB** after treeshake and minification
-(non-gziped), and provide multiple features:
+In this application, Foscia weight **~29KB** (~10KB gziped),
+and provide multiple features:
 
 - Records fetching, relationships loading (with records deserialization)
 - Records creation (with data serialization)

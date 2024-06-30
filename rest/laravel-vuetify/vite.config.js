@@ -1,6 +1,6 @@
 import vue from '@vitejs/plugin-vue';
 import laravel from 'laravel-vite-plugin';
-import { visualizer } from 'rollup-plugin-visualizer';
+import { bundleStats } from 'rollup-plugin-bundle-stats';
 import { defineConfig, loadEnv } from 'vite';
 import vuetify from 'vite-plugin-vuetify';
 
@@ -9,6 +9,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [
+      bundleStats(),
       laravel({
         input: 'resources/js/app.ts',
         refresh: true,
@@ -27,12 +28,11 @@ export default defineConfig(({ mode }) => {
     ],
     build: {
       rollupOptions: {
-        plugins: [
-          process.env.BUILD_ANALYZE ? visualizer({
-            filename: 'public/build/bundle-stats.html',
-            open: true,
-          }) : undefined,
-        ],
+        output: {
+          manualChunks: (id) => (
+            /node_modules\/@foscia/.test(id) ? 'vendor-foscia' : undefined
+          ),
+        },
       },
     },
   };
