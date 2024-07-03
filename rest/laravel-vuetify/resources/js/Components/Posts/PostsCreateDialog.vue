@@ -39,9 +39,7 @@ const onSubmit = async (event: SubmitEventPromise) => {
   if (valid) {
     emit(
       'created',
-      await action()
-        .use(create(fill(new Post(), inputs)))
-        .run(oneOrCurrent()),
+      await action().run(create(fill(new Post(), inputs)), oneOrCurrent()),
     );
 
     onCloseDialog();

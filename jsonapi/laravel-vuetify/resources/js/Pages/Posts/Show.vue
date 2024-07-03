@@ -43,9 +43,10 @@ const onComment = async (event: SubmitEventPromise) => {
 
   const { valid } = await event;
   if (valid) {
-    const newComment = await action()
-      .use(create(fill(new Comment(), { body: comment.value, post: post.value! })))
-      .run(oneOrCurrent());
+    const newComment = await action().run(
+      create(fill(new Comment(), { body: comment.value, post: post.value! })),
+      oneOrCurrent(),
+    );
 
     comment.value = '';
     post.value!.comments.unshift(newComment);
@@ -62,9 +63,7 @@ const onDelete = async () => {
 
   loading.value = true;
 
-  await action()
-    .use(destroy(post.value!))
-    .run(none());
+  await action().run(destroy(post.value!), none());
 
   loading.value = true;
 
@@ -73,9 +72,11 @@ const onDelete = async () => {
 
 onMounted(async () => {
   try {
-    post.value = await action()
-      .use(query(Post, props.postId), include('comments'))
-      .run(cachedOr(oneOrFail()));
+    post.value = await action().run(
+      query(Post, props.postId),
+      include('comments'),
+      cachedOr(oneOrFail()),
+    );
   } catch {
     router.get(route('posts.index'), {}, { replace: true });
   }

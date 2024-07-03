@@ -30,14 +30,13 @@ const state = useRemember({
 const fetchPosts = async () => {
   state.value.loading = true;
 
-  const { instances, document } = await action()
-    .use(
-      query(Post),
-      when(state.value.search.length, filterBy('search', state.value.search)),
-      sortByDesc('createdAt'),
-      paginate({ size: 12, number: state.value.page }),
-    )
-    .run(all(usingDocument));
+  const { instances, document } = await action().run(
+    query(Post),
+    when(state.value.search.length, filterBy('search', state.value.search)),
+    sortByDesc('createdAt'),
+    paginate({ size: 12, number: state.value.page }),
+    all(usingDocument),
+  );
 
   state.value.posts = instances;
   state.value.total = document.meta!.page.total;

@@ -30,14 +30,13 @@ const state = useRemember({
 const fetchPosts = async () => {
   state.value.loading = true;
 
-  const { instances, meta } = await action()
-    .use(
-      query(Post),
-      when(state.value.search.length, param('search', state.value.search)),
-      param('size', 12),
-      param('page', state.value.page),
-    )
-    .run(all((data) => ({ ...data, meta: data.data.meta })));
+  const { instances, meta } = await action().run(
+    query(Post),
+    when(state.value.search.length, param('search', state.value.search)),
+    param('size', 12),
+    param('page', state.value.page),
+    all((data) => ({ ...data, meta: data.data.meta })),
+  );
 
   state.value.posts = instances;
   state.value.total = meta.page.total;

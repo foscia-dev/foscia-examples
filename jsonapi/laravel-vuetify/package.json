@@ -7,7 +7,7 @@
         "analyze": "cross-env BUILD_ANALYZE=true vite build"
     },
     "devDependencies": {
-        "@foscia/cli": "^0.11.3",
+        "@foscia/cli": "^0.12.0",
         "@inertiajs/vue3": "^1.0.0",
         "@vitejs/plugin-vue": "^5.0.0",
         "autoprefixer": "^10.4.12",
@@ -23,9 +23,9 @@
     },
     "dependencies": {
         "@fontsource-variable/onest": "^5.0.4",
-        "@foscia/core": "^0.11.3",
-        "@foscia/http": "^0.11.3",
-        "@foscia/jsonapi": "^0.11.3",
+        "@foscia/core": "^0.12.0",
+        "@foscia/http": "^0.12.0",
+        "@foscia/jsonapi": "^0.12.0",
         "@mdi/js": "^7.4.47",
         "sass": "^1.77.4",
         "sass-loader": "^14.2.1",
